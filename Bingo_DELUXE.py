@@ -1,3 +1,6 @@
+
+
+#the libraries that I haused to crate this bingo game
 import time
 from tkinter import *
 import tkinter
@@ -9,6 +12,8 @@ from tkVideoPlayer import TkinterVideo
 from io import BytesIO
 from gtts import gTTS
 
+
+# This is the function that I had created to make pseudorandom numbers
 Xo = int(time.time())
 a = (1103515245)
 c = (12345)
@@ -21,8 +26,6 @@ Base=10**(len(str(Numeros))+1)
 I=1
 total=[]
 conteo=[]
-fila=100
-columna=200
 
 
 def metodo(Xo,c,m,Lim_1,Lim_2,repeated,Base,I,pes1,pes2):
@@ -38,8 +41,14 @@ def metodo(Xo,c,m,Lim_1,Lim_2,repeated,Base,I,pes1,pes2):
     video.play()
     video.after(1000,lambda: (video.destroy(),pygame.mixer.music.stop(),bolas(Xo,c,m,Lim_1,Lim_2,repeated,Base,I,pes1,pes2)))
 
+
+
+#this one makes the hard work:
+#create the random numbers until the number apply to the specific range (1-75)
+#the ball shows up on the generate tab and a voice says the number and the word
+#In the re-count tab is going to create an x into the matrix on the number that shown up 
 def bolas(Xo,c,m,Lim_1,Lim_2,repeated,Base,I,pes1,pes2):
-      global total,columna,fila,imagen_bol,conteo,imagen_x
+      global total,imagen_bol,conteo,imagen_x
       lenguaje= 'es-us'
       mp3_fp = BytesIO()
       while I==1:
@@ -99,11 +108,6 @@ def bolas(Xo,c,m,Lim_1,Lim_2,repeated,Base,I,pes1,pes2):
               pygame.mixer.music.play()        
               print('O',Resultado)
             I=0
-            fila+=40
-            if fila == 900:
-              fila=100
-              columna+=40
-
             if Resultado==1:
               imagen_x1=tkinter.Label(pes1,image=imagen_x,background='#662A91') 
               imagen_x1.place(x=260,y=141)
@@ -348,7 +352,7 @@ def bolas(Xo,c,m,Lim_1,Lim_2,repeated,Base,I,pes1,pes2):
 
             
 
-
+#this is the second window it's window contains the balls generatos tab and the re-count tab
 def bingo():
   pygame.mixer.music.stop()
   window=Toplevel(window_1)
@@ -408,6 +412,8 @@ def bingo():
 
   window.mainloop()
 
+
+#this function makes that a voice tells what balls the game has shown 
 def contar():
   mp3_fp = BytesIO()
   lenguaje= 'es-us'
@@ -429,12 +435,16 @@ def contar():
 
 
 
-
+#This function makes destroy the game's window
+#it has to be used when the game finish 
 def reset(window):
   window.destroy()
 
 
 
+
+
+#This is the game's main window with it's images and music
 window_1 = Tk()
 width = 1366 
 height = 768 
